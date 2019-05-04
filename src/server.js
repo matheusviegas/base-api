@@ -11,6 +11,7 @@ mongoose.connect(
     useNewUrlParser: true
   }
 );
+mongoose.set('useCreateIndex', true);
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
