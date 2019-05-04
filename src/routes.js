@@ -18,7 +18,7 @@ routes.group("/auth", (router) => {
 
 routes.group("/user", (router) => {
   router.use(authMiddleware);
-  router.get("/", UserController.me);
+  router.get("/", UserController.find);
 });
 
 module.exports = routes;

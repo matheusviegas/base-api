@@ -7,7 +7,7 @@ const mailer = require("../../modules/mailer");
 
 function generateToken(params = {}) {
     return jwt.sign(params, authConfig.secret, {
-        expiresIn: 86400
+        expiresIn: authConfig.tokenExpiration
     });
 }
 
@@ -15,14 +15,19 @@ class AuthController {
 
     async register(req, res) {
         try {
-            if (await User.findOne({ email: req.body.email })) {
+            const { name, email, password } = req.body;
+
+            if (await User.findOne({ email })) {
                 return res.status(400).send({ error: 'User already exists.' });
             }
 
-            const user = await User.create(req.body);
+            const user = await User.create({
+                name, email, password
+            });
+
             user.password = undefined;
 
-            return res.json({
+            return res.status(201).send({
                 user,
                 token: generateToken({ id: user._id })
             });
@@ -34,7 +39,7 @@ class AuthController {
     async authenticate(req, res) {
         const { email, password } = req.body;
 
-        const user = await User.findOne({ email: email }).select("+password");
+        const user = await User.findOne({ email }).select("+password");
 
         if (!user) {
             return res.status(400).send({ error: 'User not found.' });
@@ -46,7 +51,7 @@ class AuthController {
 
         user.password = undefined;
 
-        res.json({
+        return res.json({
             user,
             token: generateToken({ id: user._id })
         });
@@ -133,7 +138,7 @@ class AuthController {
 
         user.password = undefined;
 
-        res.json({
+        return res.json({
             user,
             token: generateToken({ id: user._id })
         });
