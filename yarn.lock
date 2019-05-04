@@ -564,6 +564,13 @@ expand-brackets@^2.1.4:
     snapdragon "^0.8.1"
     to-regex "^3.0.1"
 
+express-group-routes@^1.1.0:
+  version "1.1.0"
+  resolved "https://registry.yarnpkg.com/express-group-routes/-/express-group-routes-1.1.0.tgz#de933080079c027fed70be0967cb55acd8bc9387"
+  integrity sha1-3pMwgAecAn/tcL4JZ8tVrNi8k4c=
+  dependencies:
+    express "^4.13.4"
+
 express-handlebars@^3.0.0:
   version "3.0.2"
   resolved "https://registry.yarnpkg.com/express-handlebars/-/express-handlebars-3.0.2.tgz#4f70f1bb06cade5436a7a2c90efc2c9af1cf71e7"
@@ -575,7 +582,7 @@ express-handlebars@^3.0.0:
     object.assign "^4.1.0"
     promise "^8.0.2"
 
-express@^4.16.4:
+express@^4.13.4, express@^4.16.4:
   version "4.16.4"
   resolved "https://registry.yarnpkg.com/express/-/express-4.16.4.tgz#fddef61926109e24c515ea97fd2f1bdbf62df12e"
   integrity sha512-j12Uuyb4FMrd/qQAm6uCHAkPtO8FDTRJZBDd5D2KOL2eLaz1yUNdUB/NOIyq0iU4q4cFarsUCrnFDPBcnksuOg==

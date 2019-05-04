@@ -117,11 +117,26 @@ class AuthController {
             user.password = password;
 
             await user.save();
-            
+
             return res.send();
         } catch (error) {
             return res.status(400).send({ error: "Cannot reset password." })
         }
+    }
+
+    async refreshToken(req, res) {
+        const user = await User.findById(req.userId);
+
+        if (!user) {
+            return res.status(400).send({ error: 'User not found.' });
+        }
+
+        user.password = undefined;
+
+        res.json({
+            user,
+            token: generateToken({ id: user._id })
+        });
     }
 }
 
