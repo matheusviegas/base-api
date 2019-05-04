@@ -13,6 +13,7 @@ routes.group("/auth", (router) => {
   router.post("/authenticate", AuthController.authenticate);
   router.post("/forgot_password", AuthController.forgotPassword);
   router.post("/reset_password", AuthController.resetPassword);
+  router.post("/verify_email", AuthController.verifyEmail);
   router.post("/refresh_token", authMiddleware, AuthController.refreshToken);
 });
 

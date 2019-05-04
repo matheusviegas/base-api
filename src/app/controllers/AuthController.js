@@ -143,6 +143,17 @@ class AuthController {
             token: generateToken({ id: user._id })
         });
     }
+
+    async verifyEmail(req, res) {
+        const { email } = req.body;
+        const user = await User.findOne({ email });
+
+        if (user) {
+            return res.status(400).send({ error: 'Email already exists.' });
+        }
+
+        return res.send();
+    }
 }
 
 module.exports = new AuthController();
